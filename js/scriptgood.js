@@ -107,32 +107,29 @@ function makeList(_data, _tag, _col) {
       <ul class="good-info">
         <li>`;
 
-        // ${goodObj.option}
+        // ${ goodObj.option }
         // 옵션 출력하기
-        let optArr = goodObj.option.split(","); //<-쉼표를 잘라주는 코드
+        let optArr = goodObj.option.split(",");
         for (let k = 0; k < optArr.length; k++) {
           html += `<span class="good-info-option">${optArr[k]}</span>`;
         }
 
-        html += `</li> 
+        html += `</li>
         <li>
-            <p class="good-info-title"> ${goodObj.title}( < em > ${goodObj.unit} < /em>)</p >
-              <
-              /li> <
-              li >
-              <
-              p class = "good-info-price" > < b >${goodObj.price} < /b>원</p >
-              <
-              button class = "good-cart-add" > 장바구니 < /button> <
-              /li> <
-              /ul> <
-              /div>
-              `;
+          <p class="good-info-title">${goodObj.title}(<em>${goodObj.unit}</em>)</p>
+        </li>
+        <li>
+          <p class="good-info-price"><b>${goodObj.price}</b>원</p>
+          <button class="good-cart-add">장바구니</button>
+        </li>
+      </ul>
+    </div>
+  `;
         index++;
       }
     }
 
-    html += ` < /div>`;
+    html += `</div>`;
   }
 
   let div = document.querySelector(_tag);
@@ -140,3 +137,55 @@ function makeList(_data, _tag, _col) {
 }
 // 추천상품출력
 makeList(purposeData, ".purpose-wrap", 4);
+// ======================= 섹션 레시피 ===================================================
+// 레시피 가격 계산
+let recipeCheck = $(".recipe-check");
+let recipeTotal = $(".recipe-total");
+let recipeBtAll = $(".recipe-bt-all");
+
+$.each(recipeCheck, function (index, item) {
+  // 현재 선택이 되었다는 표시를 기제한다.
+  $(this).attr("check", "use");
+  $(this).click(function () {
+    let check = $(this).attr("check");
+    if (check === "use") {
+      $(this).attr("check", "no");
+    } else {
+      $(this).attr("check", "use");
+    }
+    recipeCalc();
+  });
+});
+
+recipeBtAll.click(function () {
+  // 전체가 선택되었는가?
+  let allCheck = true;
+
+  $.each(recipeCheck, function () {
+    let check = $(this).attr("check");
+    if (check !== "use") {
+      allCheck = false;
+    }
+  });
+  if (allCheck) {
+    recipeCheck.attr("check", "no");
+    recipeBtAll.html("전체선택");
+  } else {
+    recipeCheck.attr("check", "use");
+    recipeBtAll.html("전체해제");
+  }
+  recipeCalc();
+});
+
+function recipeCalc() {
+  let money = 0;
+  $.each(recipeCheck, function () {
+    let check = $(this).attr("check");
+    let price = $(this).attr("data-price");
+    if (check === "use") {
+      money += parseInt(price);
+    }
+  });
+  recipeTotal.html(money);
+}
+recipeCalc();

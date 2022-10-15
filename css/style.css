@@ -1,25 +1,31 @@
 @charset 'utf-8';
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   outline-style: none;
 }
+
 ul,
 li {
   list-style: none;
 }
+
 img {
   vertical-align: middle;
   vertical-align: middle;
 }
+
 a {
   text-decoration: none;
   color: #000;
 }
+
 html {
 }
+
 body {
   font-family: "Noto Sans KR", "Roboto", "맑은고딕", sans-serif;
   font-weight: 400;
@@ -29,3 +35,159 @@ body {
   word-break: break-all;
   min-width: 1260px;
 }
+
+/* 공통 클래스 */
+.inner {
+  position: relative;
+  display: block;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.clearfix::after {
+  content: "";
+  position: relative;
+  display: block;
+  width: 100%;
+  clear: both;
+}
+
+.good-box {
+  position: relative;
+  display: block;
+  width: 290px;
+  height: 410px;
+  background: #fff;
+}
+
+.good-box a.img-link {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 290px;
+  overflow: hidden;
+}
+
+.good-box a.img-link img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  transition: transform 0.5s;
+}
+
+.good-box a.img-link:hover img {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.good-box ul.good-info {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.good-box ul.good-info li {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+span.good-info-option {
+  position: relative;
+  display: block;
+  float: left;
+  border: 1px solid #ddd;
+  line-height: 16px;
+  /* 18px이 아닌이유 보더값이 있기 떄문에 */
+}
+
+p.good-info-title {
+  position: relative;
+  display: block;
+}
+
+p.good-info-title em {
+  font-style: normal;
+}
+
+p.good-info-price {
+  position: relative;
+  display: block;
+  float: left;
+}
+
+p.good-info-price b {
+}
+
+button.good-cart-add {
+  position: relative;
+  display: block;
+  float: right;
+  transition: all 0.3s;
+}
+
+button.good-cart-add:hover {
+  background: #75bd42;
+}
+
+h2.section-title {
+  position: relative;
+  display: block;
+}
+
+h2.section-title b {
+}
+
+h2.section-title.color-green {
+  background: #75bd42;
+}
+
+h2.section-title-bar {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 2px;
+  background: #707070;
+}
+.good-list-wrap {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.good-list-wrap-left {
+  position: relative;
+  display: block;
+  float: left;
+  width: 305px;
+}
+.good-list-wrap-right {
+  position: relative;
+  display: block;
+  float: right;
+  width: calc(100% - 305px);
+  margin: 0 auto;
+}
+
+/* 헤더 */
+.header {
+}
+
+/* 비주얼 */
+.visual {
+}
+
+/* 추천상품 */
+.purpose {
+  position: relative;
+  display: block;
+}
+.good-wrap {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
